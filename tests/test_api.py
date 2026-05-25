@@ -44,6 +44,7 @@ class TestStartGame:
         client.get("/")
         response = client.post("/start")
         assert 'aria-label="Back to start screen"' in response.text
+        # 24 toggle squares + 1 free-space square expose aria-labels in the board.
         assert response.text.count('aria-label="') >= 25
 
 
@@ -85,6 +86,7 @@ class TestAccessibility:
         client.get("/")
         client.post("/start")
 
+        # Toggle the first row (0..4) to trigger a winning line and open the modal.
         for square_id in [0, 1, 2, 3]:
             client.post(f"/toggle/{square_id}")
 
