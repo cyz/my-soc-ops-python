@@ -6,6 +6,7 @@
             hx-post="/reset"
             hx-target="#game-container"
             hx-swap="outerHTML"
+            aria-label="Back to start screen"
             class="text-gray-500 text-sm px-3 py-1.5 rounded active:bg-gray-100">
             ← Back
         </button>
@@ -20,7 +21,7 @@
 
     <!-- Bingo indicator -->
     {% if session.has_bingo %}
-    <div class="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm">
+    <div class="bg-amber-100 text-amber-800 text-center py-2 font-semibold text-sm" role="status" aria-live="polite">
         🎉 BINGO! You got a line!
     </div>
     {% endif %}

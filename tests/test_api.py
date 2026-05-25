@@ -40,6 +40,13 @@ class TestStartGame:
         # Count the toggle buttons (squares with hx-post="/toggle/")
         assert response.text.count('hx-post="/toggle/') == 24  # 24 + 1 free space
 
+    def test_game_screen_has_accessible_button_labels(self, client: TestClient):
+        client.get("/")
+        response = client.post("/start")
+        assert 'aria-label="Back to start screen"' in response.text
+        assert 'role="grid"' in response.text
+        assert 'aria-label="Social bingo board"' in response.text
+
 
 class TestToggleSquare:
     def test_toggle_marks_square(self, client: TestClient):
@@ -68,3 +75,22 @@ class TestDismissModal:
         response = client.post("/dismiss-modal")
         assert response.status_code == 200
         assert "FREE SPACE" in response.text
+
+
+class TestAccessibility:
+    def test_home_contains_accessible_start_button(self, client: TestClient):
+        response = client.get("/")
+        assert 'aria-label="Start game"' in response.text
+
+    def test_bingo_modal_has_dialog_aria_attributes(self, client: TestClient):
+        client.get("/")
+        client.post("/start")
+
+        for square_id in [0, 1, 2, 3]:
+            client.post(f"/toggle/{square_id}")
+
+        response = client.post("/toggle/4")
+        assert 'role="dialog"' in response.text
+        assert 'aria-modal="true"' in response.text
+        assert 'aria-labelledby="bingo-title"' in response.text
+        assert 'aria-describedby="bingo-description"' in response.text
