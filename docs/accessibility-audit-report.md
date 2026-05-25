@@ -9,7 +9,6 @@
 ## Fixes applied
 - Added visible `button:focus-visible` outline style in `app/static/css/app.css`.
 - Added `aria-label` to start and back buttons.
-- Added board semantics with `role="grid"` and `aria-label`.
-- Added modal semantics: `role="dialog"`, `aria-modal`, `aria-labelledby`, `aria-describedby`, and initial button `autofocus`.
+- Added modal semantics: `role="dialog"`, `aria-modal`, `aria-labelledby`, `aria-describedby`, and initial keyboard focus via `autofocus` on the action button.
 - Increased modal title contrast (`text-amber-800`).
 - Added tests covering new ARIA attributes in main flow responses.

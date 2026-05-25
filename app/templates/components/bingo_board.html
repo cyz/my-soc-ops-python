@@ -1,4 +1,4 @@
-<div class="grid grid-cols-5 gap-1 w-full max-w-md mx-auto aspect-square" role="group" aria-label="Social bingo board">
+<div class="grid grid-cols-5 gap-1 w-full max-w-md mx-auto aspect-square">
     {% for square in session.board %}
     {% set is_winning = square.id in session.winning_square_ids %}
     <button
