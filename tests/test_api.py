@@ -44,7 +44,7 @@ class TestStartGame:
         client.get("/")
         response = client.post("/start")
         assert 'aria-label="Back to start screen"' in response.text
-        assert 'role="grid"' in response.text
+        assert 'role="group"' in response.text
         assert 'aria-label="Social bingo board"' in response.text
 
 
